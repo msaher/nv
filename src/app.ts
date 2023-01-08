@@ -1,8 +1,9 @@
-import express, { Express } from "express"
+import express from "express"
 const app = express();
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.send('hi');
+    res.render('index');
 });
 
 const port = 8000
