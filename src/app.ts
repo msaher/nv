@@ -1,14 +1,11 @@
-const express = require('express');
+import express, { Express } from "express"
 const app = express();
-
 
 app.get('/', (req, res) => {
     res.send('hi');
 });
 
 const port = 8000
-app.listen(port, (err) => {
-    if (err)
-        console.log(err);
+app.listen(port, () => {
     console.log('Listening on port ' + port)
 });
