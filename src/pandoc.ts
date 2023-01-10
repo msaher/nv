@@ -27,6 +27,6 @@ export function getHtml(filename: string): Buffer | null {
     if (!accepExt.includes(ext))
         return null;
 
-    let pandoc = spawnSync('pandoc', [filename, '-t', 'html']);
+    let pandoc = spawnSync('pandoc', [filename, '--webtex', '-t', 'html']);
     return pandoc.stdout;
 }
