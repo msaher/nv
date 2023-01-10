@@ -1,8 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import pandoc from 'node-pandoc'
 import express from "express";
-import Response from "express";
 import { getHtml } from "./pandoc"
 
 // configure app
