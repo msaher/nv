@@ -1,6 +1,32 @@
 import { spawnSync } from 'child_process';
+import path from 'path';
 
-export function getHtml(filename: string) {
+const accepExt = [
+    '.docx',
+    '.epub',
+    '.fb2',
+    '.gfm',
+    '.haddock',
+    '.html',
+    '.jats',
+    '.json',
+    '.latex',
+    '.man',
+    '.md',
+    '.markdown',
+    '.odt',
+    '.opml',
+    '.org',
+    '.rst',
+    '.t2t',
+    '.wiki',
+];
+
+export function getHtml(filename: string): Buffer | null {
+    let ext = path.extname(filename);
+    if (!accepExt.includes(ext))
+        return null;
+
     let pandoc = spawnSync('pandoc', [filename, '-t', 'html']);
     return pandoc.stdout;
 }

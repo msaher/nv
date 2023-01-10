@@ -18,13 +18,12 @@ app.get('/', (req, res) => {
 
 app.get('/*', (req: any, res) => {
     const filename = path.join(basedir, req.params[0]);
-    if(fs.existsSync(filename)) {
-        let html = getHtml(filename);
-        res.render('note', {content: html});
-    }
-    else {
+    if(!fs.existsSync(filename))
         res.render('404');
-    }
+
+    let html = getHtml(filename);
+    res.render('note', {content: html, title: path.basename(filename)});
+
 });
 
 const port = 8000
