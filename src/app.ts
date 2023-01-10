@@ -8,21 +8,21 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 
-const basedir = "../";
+export function setupServer(basedir) {
 
 app.get('/', (req, res) => {
-    let files = fs.readdirSync('../')
+    let files = fs.readdirSync(basedir)
     return res.render('root', {files: files});
 });
 
 app.get('/*', (req: any, res) => {
-    const filename = path.normalize(path.join(basedir, req.params[0]));
+    const filename = path.join(basedir, req.params[0]);
     if(!fs.existsSync(filename))
         return res.render('404');
 
     if (fs.lstatSync(filename).isDirectory()) {
         let files = fs.readdirSync(filename)
-        return res.render('directory', {dirpath: filename, basename: path.basename(filename), files: files});
+        return res.render('directory', {dirpath: req.params[0], basename: path.basename(filename), files: files});
     }
 
     let html = getHtml(filename);
@@ -38,3 +38,4 @@ app.listen(port, () => {
     console.log('Listening on port ' + port)
 });
 
+}
