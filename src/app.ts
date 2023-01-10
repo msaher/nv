@@ -8,7 +8,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 
-export function setupServer(basedir: string, port: number) {
+export function setupServer(basedir: string, port: number, callback?: () => void) {
 
 app.get('/', (req, res) => {
     let files = fs.readdirSync(basedir)
@@ -35,6 +35,8 @@ app.get('/*', (req: any, res) => {
 
 app.listen(port, () => {
     console.log('Listening on port ' + port)
+    if (callback)
+        callback();
 });
 
 }

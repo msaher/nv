@@ -1,18 +1,11 @@
 import fs from 'fs';
+import path from 'path'
 import { setupServer } from './app';
+import open from 'open';
 
 function die(msg: string) {
     console.error(msg);
     process.exit(1);
-}
-
-function parseDir(dir: string) {
-    if (!fs.existsSync(dir))
-        die("nv: " + dir + " No such file or directory");
-
-    if (!fs.lstatSync(dir).isDirectory())
-        die("nv: " + dir + " Not a directory");
-    return dir;
 }
 
 function main() {
@@ -30,14 +23,18 @@ function main() {
                 die("nv: Invalid port number");
         }
         else {
-            dir = parseDir(argv[i])
+            dir = argv[i];
         }
 
     if (!dir)
         die("nv: Missing note directory");
 
+    if (!fs.existsSync(dir))
+        die("nv: " + dir + " No such file or directory");
 
-    setupServer(dir, port);
+    // check if file or directory
+    dir = fs.lstatSync(dir).isDirectory() ? dir : path.dirname(dir);
+        setupServer(dir, port);
 }
 
 main();
