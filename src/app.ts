@@ -11,7 +11,9 @@ app.use(express.static('public'))
 const basedir = "../";
 
 app.get('/', (req, res) => {
-    res.render('index');
+    let files = fs.readdirSync('../')
+    files = files.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+    return res.render('root', {files: files});
 });
 
 app.get('/*', (req: any, res) => {
