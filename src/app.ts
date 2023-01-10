@@ -12,7 +12,6 @@ const basedir = "../";
 
 app.get('/', (req, res) => {
     let files = fs.readdirSync('../')
-    files = files.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
     return res.render('root', {files: files});
 });
 
