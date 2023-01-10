@@ -33,7 +33,7 @@ function main() {
             dir = parseDir(argv[i])
         }
 
-    if (dir === "")
+    if (!dir)
         die("nv: Missing note directory");
 
 
