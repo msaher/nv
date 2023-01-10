@@ -1,10 +1,39 @@
 body {
-    margin: 0 auto;
-    width: 80%;
     background-color: #282828;
     color: #ebdbb2;
 }
 
+main {
+    margin: 0 auto;
+    width: 80%;
+}
+
 h1 {
     text-align: left;
+}
+
+nav {
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    color: #282828;
+    background-color: #ebdbb2;
+    border: solid;
+    border-radius: 12px;
+    display: inline-block;
+    width: auto;
+}
+
+nav ul {
+    padding: 0px;
+}
+
+nav li {
+    list-style: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+nav a:link, nav a:visited {
+    color: blue;
 }
