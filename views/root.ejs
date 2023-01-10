@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Notes</title>
+        <link href="/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <main>
+            <h1>All notes</h1>
+            <ul>
+                <% for (let f of files) { %>
+                <li class="listing"><a href=<%= f%>> <%= f %> </a></li>
+                <% } %>
+            </ul>
+        </main>
+    </body>
+</html>
+

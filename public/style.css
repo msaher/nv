@@ -1,6 +1,10 @@
-body {
-    background-color: #282828;
-    color: #ebdbb2;
+main {
+	margin: 40px auto;
+	max-width: 650px;
+	line-height: 1.6;
+	font-size: 18px;
+	color: #444;
+	padding: 0 10px;
 }
 
 main {
@@ -16,8 +20,6 @@ nav {
     padding: 0px;
     position: absolute;
     top: 0px;
-    color: #282828;
-    background-color: #ebdbb2;
     border: solid;
     border-radius: 12px;
     display: inline-block;
@@ -32,8 +34,4 @@ nav li {
     list-style: none;
     padding: 10px;
     border-radius: 10px;
-}
-
-nav a:link, nav a:visited {
-    color: blue;
 }
