@@ -7,20 +7,38 @@ function die(msg: string) {
     process.exit(1);
 }
 
+function parseDir(dir: string) {
+    if (!fs.existsSync(dir))
+        die("nv: " + dir + " No such file or directory");
+
+    if (!fs.lstatSync(dir).isDirectory())
+        die("nv: " + dir + " Not a directory");
+    return dir;
+}
+
 function main() {
     let argv = process.argv.slice(2)
-    if (argv.length != 1)
+    let argc = argv.length;
+
+    if (argc < 1 && argc > 3)
         die("nv: Invalid number of arguements.");
 
-    let notedir = argv[0];
-    if (!fs.existsSync(notedir))
-        die("nv: " + notedir + " No such file or directory");
+    let dir = "";
+    let port = 8000;
+    for (let i = 0; i < argc; i++)
+        if (argv[i] == '-p') {
+            if (!(port = parseInt(argv[++i])))
+                die("nv: Invalid port number");
+        }
+        else {
+            dir = parseDir(argv[i])
+        }
 
-    if (!fs.lstatSync(notedir).isDirectory())
-        die("nv: " + notedir + " Not a directory");
+    if (dir === "")
+        die("nv: Missing note directory");
 
-    notedir = path.resolve(notedir);
-    setupServer(notedir);
+
+    setupServer(dir, port);
 }
 
 main();
