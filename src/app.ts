@@ -17,12 +17,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/*', (req: any, res) => {
-    const filename = path.join(basedir, req.params[0]);
+    const filename = path.normalize(path.join(basedir, req.params[0]));
     if(!fs.existsSync(filename))
         res.render('404');
 
     let html = getHtml(filename);
-    res.render('note', {content: html, title: path.basename(filename)});
+    if (html)
+        res.render('note', {content: html, title: path.basename(filename)});
+    else
+        res.sendFile(path.resolve(filename)); // uknown data is sent as it is
 
 });
 
