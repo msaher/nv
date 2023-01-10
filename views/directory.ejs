@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= basename %></title>
+        <link href="/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Index of <%= basename %>/</h1>
+        <ul>
+            <% for (let f of files) { %>
+            <li><a href=<%= dirpath + "/" + f%>> <%= f %> </a></li>
+            <% } %>
+        </ul>
+    </body>
+</html>

@@ -17,13 +17,18 @@ app.get('/', (req, res) => {
 app.get('/*', (req: any, res) => {
     const filename = path.normalize(path.join(basedir, req.params[0]));
     if(!fs.existsSync(filename))
-        res.render('404');
+        return res.render('404');
+
+    if (fs.lstatSync(filename).isDirectory()) {
+        let files = fs.readdirSync(filename)
+        return res.render('directory', {dirpath: filename, basename: path.basename(filename), files: files});
+    }
 
     let html = getHtml(filename);
     if (html)
-        res.render('note', {content: html, title: path.basename(filename)});
+        return res.render('note', {content: html, title: path.basename(filename)});
     else
-        res.sendFile(path.resolve(filename)); // uknown data is sent as it is
+        return res.sendFile(path.resolve(filename)); // uknown data is sent as it is
 
 });
 
