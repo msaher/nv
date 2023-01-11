@@ -7,12 +7,14 @@
     <body>
         <main>
             <h1>All notes</h1>
-            <ul>
+            <input type="text" id="search" onkeyup="filterList()" placeholder="Search for note">
+            <ul id='list'>
                 <% for (let f of files) { %>
                 <li class="listing"><a href=<%= f%>> <%= f %> </a></li>
                 <% } %>
             </ul>
         </main>
+        <script src='/search.js'></script>
     </body>
 </html>
 
