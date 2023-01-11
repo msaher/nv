@@ -1,7 +1,8 @@
+#!/bin/node
+
 import fs from 'fs';
 import path from 'path'
 import { setupServer } from './app';
-import open from 'open';
 
 function die(msg: string) {
     console.error(msg);
