@@ -10,7 +10,7 @@
             <input type="text" id="search" onkeyup="filterList()" placeholder="Search for note">
             <ul id='list'>
                 <% for (let f of files) { %>
-                <li class="listing"><a href=<%= f%>> <%= f %> </a></li>
+                <li><a href=<%= f%>> <%= f %> </a></li>
                 <% } %>
             </ul>
         </main>

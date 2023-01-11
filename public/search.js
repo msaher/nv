@@ -1,20 +1,28 @@
-function filterList(list, str) {
+function filterList(str) {
+    let list = document.getElementById('list');
     let children = list.children;
     for (let c of children) {
 	let text = c.children[0].text;
 	if (!text.includes(str))
-	    c.style.display = 'none';
+	    c.classList.add('inactive');
 	else
-	    c.style.display = '';
+	    c.classList.remove('inactive');
     }
 }
 
 function main() {
     let sbar = document.getElementById('search');
     let list = document.getElementById('list');
+
     sbar.addEventListener('keyup', () => {
-	filterList(list, sbar.value);
+	filterList(sbar.value);
     })
+
+     sbar.addEventListener('keydown', (e) => {
+ 	 if (e.key == 'Enter')
+         list.querySelector('li:not(.inactive)').children[0].click();
+     })
+
 }
 
 main()
