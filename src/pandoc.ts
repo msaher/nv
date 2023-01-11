@@ -10,7 +10,7 @@ const accepExt = [
     '.html',
     '.jats',
     '.json',
-    '.latex',
+    '.tex',
     '.man',
     '.md',
     '.markdown',
